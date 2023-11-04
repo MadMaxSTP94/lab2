@@ -11,14 +11,14 @@ import java.util.Properties;
 @Data
 @Builder
 public class BloodCharacteristics {
-    private int leikocites;
-    private int coe;
-    private int mioglobin;
-    private int kholeterine;
-    private int gemoglobin;
-    private int neitrofily;
-    private int trombocity;
-    private int gematokrit;
+    private Integer leikocites;
+    private Integer coe;
+    private Integer mioglobin;
+    private Integer kholeterine;
+    private Integer gemoglobin;
+    private Integer neitrofily;
+    private Integer trombocity;
+    private Integer gematokrit;
     public static BloodCharacteristics build(Map<String, String> node, Map<String, String> associations) {
         return BloodCharacteristics.builder()
                 .coe(Integer.parseInt(node.get(associations.get("coe"))))
@@ -31,5 +31,19 @@ public class BloodCharacteristics {
                 .gemoglobin(Integer.parseInt(node.get(associations.get("gem"))))
                 .build();
     }
+    public static BloodCharacteristics build(Integer coe, Integer gematokrit, Integer kholeterine, Integer leikocites, Integer neitrofily,
+                                             Integer trombocity, Integer mioglobin, Integer gemoglobin) {
+        return BloodCharacteristics.builder()
+                .coe(coe)
+                .gematokrit(gematokrit)
+                .kholeterine(kholeterine)
+                .leikocites(leikocites)
+                .neitrofily(neitrofily)
+                .trombocity(trombocity)
+                .mioglobin(mioglobin)
+                .gemoglobin(gemoglobin)
+                .build();
+    }
+
 
 }

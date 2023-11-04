@@ -1,27 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+	<link href="style.css" rel="stylesheet" />
     <title>Document</title>
 </head>
 <body>
-    <form action="" class="form">
+<style>
+	body {
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+.form {
+    box-shadow: 0 8px 8px #9e9e9e;
+    padding:30px 30px;
+    width: 500px;
+}
+
+.group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.container .title,.submit{
+    margin: 20px 0;
+}
+
+.title {
+    text-align: center;
+    font-weight: normal;
+}
+
+.textbox {
+    width: 100%;
+    font-size: 18px;
+    background-color: transparent;
+    outline: none;
+    border:none;
+    border-bottom: 2px solid #0e0e0e;
+    transition: 0.3s;
+}
+
+.label {
+    position:absolute;
+    z-index: -1;
+    top:0;
+    color:#9e9e9e;
+    transition: 0.3s;
+
+}
+
+.submit {
+    width:100%;
+    padding:10px 20px;
+    font-size: 16px;
+    margin-top: 0;
+    border:none;
+    border-radius: 8px;
+    color:azure;
+    background-color: rgba(0,113,240,0.7);
+}
+
+
+.textbox:focus,
+.textbox:hover {
+    border-color: rgba(0,113,240,0.7);
+}
+
+.textbox:focus ~ .label,
+.textbox:not(:placeholder-shown) ~ .label {
+    top:-18px;
+    font-size: 14px;
+    color: #9e9e9e;
+}
+
+
+.submit:hover {
+    background-color: rgba(24, 98, 148, 0.7);
+}
+
+.block-list {
+    display: flex;
+    gap: 80px;
+}
+
+</style>
+    <form method="post" action="#" th:action="@{/}" class="form" th:object="${person}">
         <div class="container">
-            <h1 class="title">Sign In</h1>
-            <div class="group">
-                <input type="text" class="textbox" placeholder=" ">
-                <label for="" class="label">Email</label>
-            </div>
-            <div class="group">
-                <input type="text" class="textbox" placeholder=" "/>
-                <label for="" class="label">Password</label>
-            </div>
-            <input type="submit" class="submit" value="SignIn"/>
+            <h1 class="title">Введите данные</h1>
+	        <div class="block-list"th:object="${person}">
+		        <div class = "container" th:object="${person}">
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="height" name="height" th:field="*{height}" required/>
+				        <label class = "label">Рост</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="weight" name="weight" th:field="*{weight}" required/>
+				        <label class = "label">Вес</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="double" id="temp" name="temperature" th:field="*{temperature}" required/>
+				        <label class = "label">Температура</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="pulse" name="pulse" th:field="*{pressureCharacteristics.pulse}" required/>
+				        <label class = "label">Пульс</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="pressureH" name="pressureHigh" th:field="*{pressureCharacteristics.pressureHigh}" required/>
+				        <label class = "label">Давление верх.</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="pressureL" name="pressureLow" th:field="*{pressureCharacteristics.pressureLow}" required/>
+				        <label class = "label">Давление нижн.</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="gemat" name="gematokrit" th:field="*{bloodCharacteristics.gematokrit}" required/>
+				        <label class = "label">Гематокрит</label>
+			        </div>
+		        </div>
+
+		        <div class="container">
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="lei" name="leikocites" th:field="*{bloodCharacteristics.leikocites}" required/>
+				        <label class = "label">Лейкоциты</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="coe" name="coe" th:field="*{bloodCharacteristics.coe}" required/>
+				        <label class = "label">СОЭ</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="mio" name="mioglobin" th:field="*{bloodCharacteristics.mioglobin}" required/>
+				        <label class = "label">Миоглобин</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="hol" name="kholeterine" th:field="*{bloodCharacteristics.kholeterine}" required/>
+				        <label class = "label">Холестирин</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="gem" name="gemoglobin" th:field="*{bloodCharacteristics.gemoglobin}" required/>
+				        <label class = "label">Гемоглобин</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="nei" name="neitrofily" th:field="*{bloodCharacteristics.neitrofily}" required/>
+				        <label class = "label">Нейтрофилы</label>
+			        </div>
+
+			        <div class="group">
+				        <input class = "textbox" type="integer" id="trom" name="trombocity" th:field="*{bloodCharacteristics.trombocity}" required/>
+				        <label class = "label">Тромбоциты</label>
+			        </div>
+
+		        </div>
+        </div>
+	        <input type="submit" class="submit" value="Ввод"/>
         </div>
     </form>
-    
 </body>
 </html>

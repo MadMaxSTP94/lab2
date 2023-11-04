@@ -1,37 +1,29 @@
 package com.example.lab2.controller;
 
+import com.example.lab2.model.HealthClass;
 import com.example.lab2.model.Person;
-import com.example.lab2.util.Parser;
-import com.example.lab2.util.PersonRowMapper;
-import com.example.lab2.util.properties.CharProperties;
-import org.apache.poi.ss.usermodel.Workbook;
+import com.example.lab2.service.PersonCorrelationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-
+import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/test")
 public class TestController {
     @Autowired
-    private Parser parser;
-    @Autowired
-    private Workbook workbook;
-    @Autowired
-    private PersonRowMapper personRowMapper;
-    @Autowired
-    private CharProperties charProperties;
+    private PersonCorrelationService personCorrelationService;
     @GetMapping
     public List<Person> getAllStrings() {
-        var list = parser.getPersonList(workbook, charProperties.getAssociations());
-        var rs = personRowMapper.personList(list.get(0));
-        return rs;
+        var list = new ArrayList<Person>();
+        list.add(personCorrelationService.getAvgPerson(0));
+        list.add(personCorrelationService.getAvgPerson(1));
+        return list;
+    }
+    @PostMapping
+    public Map<String, HealthClass> post(@RequestBody Person person) {
+        return personCorrelationService.comparePersons(person);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.lab2.util;
 
+import com.example.lab2.model.HealthClass;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -11,15 +12,13 @@ import java.util.List;
 import java.util.Map;
 @Service
 public class Parser {
-    private final String HEALTHY_CONST = "HEALTHY";
-    private final String ILL_CONST = "ILL";
     private final String TEMP_CONST = "Температура";
     public List<List<Map<String, String>>> getPersonList(Workbook workbook, List<String> associations) {
         List<List<Map<String, String>>> list = new ArrayList<>();
         var iterator = workbook.iterator();
         while (iterator.hasNext()) {
             Sheet sheet = iterator.next();
-            if(sheet.getSheetName().equals(HEALTHY_CONST) || sheet.getSheetName().equals(ILL_CONST)) {
+            if(sheet.getSheetName().equals(HealthClass.HEALTHY.name()) || sheet.getSheetName().equals(HealthClass.ILL.name())) {
                 List<Map<String, String>> innerList = new ArrayList<>();
                 for (Row row : sheet) {
                     Map<String, String> inInnerList = getStringStringMap(associations, row);

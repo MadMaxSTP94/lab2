@@ -4,15 +4,12 @@ import com.example.lab2.model.BloodCharacteristics;
 import com.example.lab2.model.Person;
 import com.example.lab2.model.PressureCharacteristics;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Component
-public class Calculate {
+public class CalculatePerson {
     public Person getAvgPerson(List<Person> personsList, String id) {
         int height = 0;
         int weight = 0;
@@ -36,7 +33,6 @@ public class Calculate {
                 avgBlood(bloodCharacteristics)
         );
     }
-
     private PressureCharacteristics avgPressure(List<PressureCharacteristics> pressureCharacteristics) {
         int pressureH = 0;
         int pressureL = 0;
@@ -54,7 +50,6 @@ public class Calculate {
         );
 
     }
-
     private BloodCharacteristics avgBlood(List<BloodCharacteristics> bloodCharacteristics) {
         int leikocites = 0;
         int coe = 0;
@@ -88,4 +83,5 @@ public class Calculate {
         );
 
     }
+
 }
