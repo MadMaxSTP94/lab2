@@ -1,0 +1,85 @@
+body {
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+.form {
+    box-shadow: 0 8px 8px #9e9e9e;
+    padding:30px 30px;
+    width: 500px;
+}
+
+.group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.container .title,.submit{
+    margin: 20px 0;
+}
+
+.title {
+    text-align: center;
+    font-weight: normal;
+}
+
+.textbox {
+    width: 100%;
+    font-size: 18px;
+    background-color: transparent;
+    outline: none;
+    border:none;
+    border-bottom: 2px solid #0e0e0e;
+    transition: 0.3s;
+}
+
+.label {
+    position:absolute;
+    z-index: -1;
+    top:0;
+    color:#9e9e9e;
+    transition: 0.3s;
+
+}
+
+.submit {
+    width:100%;
+    padding:10px 20px;
+    font-size: 16px;
+    margin-top: 0;
+    border:none;
+    border-radius: 8px;
+    color:azure;
+    background-color: rgba(0,113,240,0.7);
+}
+
+
+.textbox:focus,
+.textbox:hover {
+    border-color: rgba(0,113,240,0.7);
+}
+
+.textbox:focus ~ .label, 
+.textbox:not(:placeholder-shown) ~ .label {
+    top:-18px;
+    font-size: 14px;
+    color: #9e9e9e;
+}
+
+
+.submit:hover {
+    background-color: rgba(24, 98, 148, 0.7);
+}
+
+.block-list {
+    display: flex;
+    gap: 80px;
+}
+
+
+
+
